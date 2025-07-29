@@ -22,8 +22,15 @@ inscripciones_schema = InscripcionSchema(many=True)
 
 @university_bp.route('/estudiantes', methods=['POST'])
 def create_estudiante():
+    if not request.is_json:
+        return jsonify({"message": "El cuerpo debe ser JSON"}), 400
+
+    data = request.get_json()
+
+    if not data:
+        return jsonify({"message": "El cuerpo no puede estar vacío"}), 400
+
     try:
-        
         estudiante_data = estudiante_schema.load(request.json)
         db.session.add(estudiante_data)
         db.session.commit()

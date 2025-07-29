@@ -1,6 +1,6 @@
 
 from marshmallow import Schema, fields, validate  
-from marshmallow  import SQLAlchemyAutoSchema 
+from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 from app.database import db 
 from app.models import Estudiante, Curso, Inscripcion 
 from datetime import datetime
